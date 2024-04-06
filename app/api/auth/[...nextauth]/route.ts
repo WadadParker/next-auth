@@ -13,18 +13,21 @@ const handler = NextAuth({
             name:"Email",
             credentials: {
                 username: { label:'email',type:'text',placeholder: 'Email'},
-                password: { label:'email',type:'password',placeholder: 'Password'}
+                password: { label:'password',type:'password',placeholder: 'Password'}
             },
             async authorize(credentials: any) {
                 // In this point, you need to search your backend for whether the username password matches
                 // And then choose what to return once you find the user, we can return the user.id
                 // const user = await prisma.user.findOne({where:{email:username,password:password}})
                 return {
-                    id:"user1"
+                    id:"user1",
+                    name:"Wadad parker",
+                    email:"Wadad@gmail.com"
                 }
             }
         })
-    ]
+    ],
+    secret: process.env.NEXTAUTH_URL
 });
 // Above credentials you are actually fill the input variables. Gogin to api/auth/signin will render a mast Sign in page for you
 

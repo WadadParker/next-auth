@@ -6,11 +6,14 @@
 // The dynamic [...] route folder also holds true for frontend routes
 
 import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
 
-export function GET(req:NextRequest , { params: { authRoutes } }: { params:{authRoutes: string[]} }) {
+export async function GET(req:NextRequest , { params: { authRoutes } }: { params:{authRoutes: string[]} }) {
     console.log(authRoutes);
+    const session = await getServerSession()
     return NextResponse.json({
-        message:"This is from next js"
+        message:"This is from next js, with user details. This is how you get user details from session in a server side component",
+        session
     })
 }
 
